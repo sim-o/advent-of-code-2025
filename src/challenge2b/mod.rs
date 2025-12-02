@@ -1,10 +1,8 @@
 pub fn challenge2b(input: String) -> i64 {
     input
-        .trim()
-        .lines()
-        .flat_map(|ln| ln.split_terminator(","))
-        .flat_map(|ln| {
-            let mut parts = ln.split("-").map(|i| i.parse::<i64>().unwrap());
+        .split(",")
+        .map(|p| p.trim().split("-").map(|i| i.parse::<i64>().unwrap()))
+        .flat_map(|mut parts| {
             let first = parts.next().unwrap();
             let last = parts.next().unwrap();
             first..=last
