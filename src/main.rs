@@ -2,12 +2,14 @@ use std::{fs, process::exit};
 
 use crate::{
     challenge1a::challenge1a, challenge1b::challenge1b, challenge2a::challenge2a,
-    challenge2b::challenge2b,
+    challenge2b::challenge2b, challenge3a::challenge3a, challenge3b::challenge3b,
 };
 mod challenge1a;
 mod challenge1b;
 mod challenge2a;
 mod challenge2b;
+mod challenge3a;
+mod challenge3b;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -33,6 +35,8 @@ fn main() {
         "1b" => challenge1b(input),
         "2a" => challenge2a(input),
         "2b" => challenge2b(input),
+        "3a" => challenge3a(input),
+        "3b" => challenge3b(input),
         _ => {
             println!("No challenge {challenge}");
             exit(1);
