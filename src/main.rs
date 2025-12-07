@@ -1,4 +1,4 @@
-use std::{fs, process::exit};
+use std::{fs, process::exit, time::SystemTime};
 
 use crate::{
     challenge1a::challenge1a, challenge1b::challenge1b, challenge2a::challenge2a,
@@ -39,8 +39,11 @@ fn main() {
     };
 
     let part = &args[2];
-
     let f = String::new() + challenge + part;
+
+    let start = SystemTime::now()
+        .duration_since(SystemTime::UNIX_EPOCH)
+        .unwrap();
     let output = match &*f {
         "1a" => challenge1a(input),
         "1b" => challenge1b(input),
@@ -62,5 +65,10 @@ fn main() {
         }
     };
 
+    let end = SystemTime::now()
+        .duration_since(SystemTime::UNIX_EPOCH)
+        .unwrap();
+
     println!("solution: {output}");
+    println!("time: {}", (end - start).as_nanos());
 }
